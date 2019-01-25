@@ -1,18 +1,32 @@
-//#include <stdlib.h>
-#include "bye.h"
-#include "hello.h"
+#include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 
-int main(int argc,char* argv[argc]){
+#include "awesome.h"
+
+#if __awesome_ver < 2
+#error "Header Datei liegt in zu alter Version vor. Bitte Updaten!"
+#endif
+
+
+int main(){
 	
-	if ( argc < 2 ){
-		fprintf(stderr, "usage: ./main <name>\n");
-		return 1;
-	
-	}
+#ifdef DEBUG
+	puts("starting");
+#endif
+hello_awesome(getlogin());
 
-	hello( (char*) argv[1] );
-	bye( (char*) argv[1] );
+#if __awesome_ver == 2
+	something_awesome(42);
+#endif
 
-	return 0;
+#if __awesome_ver == 3
+	do_something_awesome(42);
+#endif
+
+
+#ifdef DEBUG
+	puts("done");
+#endif
+	return EXIT_SUCCESS;
 }

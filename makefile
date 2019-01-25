@@ -1,14 +1,13 @@
-WARNFLAGS = -W -Wall -Werror
-OPTFLAGS = -std=c11
-CFLAGS += $(WARNFLAGS) $(OPTFLAGS)
+CFLAGS = -Wall 
 
-OBJS = main.o hello.o bye.o
+ver2: main 
+ver2: CFLAGS += -Iawesome2
 
-main: $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@
+ver3: main 
+ver3: CFLAGS += -Iawesome3
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $<
+debug: main 
+debug: CFLAGS += -DDEBUG -Iawesome3
 
-clean:
-	rm -f *~ *.o main
+clean: 	
+	$(RM) main
