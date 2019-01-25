@@ -1,6 +1,14 @@
-CFLAGS += -W -Wall -Wextra -Werror 
+WARNFLAGS = -W -Wall -Werror
+OPTFLAGS = -std=c11
+CFLAGS += $(WARNFLAGS) $(OPTFLAGS)
 
-all: own_pwd own_tty own_whoami own_sync
+OBJS = main.o hello.o bye.o
+
+main: $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $@
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $<
 
 clean:
-	$(RM) *.o own_pwd own_tty own_whoami own_sync
+	rm -f *~ *.o main
